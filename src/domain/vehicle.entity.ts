@@ -1,4 +1,3 @@
-// Vehicle entity
 export class Vehicle {
     id: string;
     licensePlate: string;

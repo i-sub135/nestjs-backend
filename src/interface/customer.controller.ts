@@ -3,8 +3,8 @@ import { CustomerService } from '../application/customer/customer.service';
 import { CreateCustomerDto, UpdateCustomerDto } from '../application/customer/customer.dto';
 import { JwtAuthGuard } from '../application/auth/jwt-auth.guard';
 
-@UseGuards(JwtAuthGuard) // Protect all customer routes
 @Controller('customers')
+@UseGuards(JwtAuthGuard)
 export class CustomerController {
     constructor(private customerService: CustomerService) { }
 

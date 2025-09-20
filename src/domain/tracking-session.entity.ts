@@ -1,4 +1,3 @@
-// Tracking session entity
 export class TrackingSession {
     id: string;
     vehicleId: string;

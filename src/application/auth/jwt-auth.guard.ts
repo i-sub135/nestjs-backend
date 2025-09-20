@@ -15,7 +15,7 @@ export class JwtAuthGuard implements CanActivate {
 
         try {
             const payload = await this.authService.verifyToken(token);
-            request.user = payload; // Attach user to request
+            request.user = payload;
             return true;
         } catch (error) {
             throw new UnauthorizedException('Invalid token');

@@ -38,7 +38,6 @@ export class VehicleService {
     }
 
     async create(data: CreateVehicleDto) {
-        // Check if customer exists
         const customer = await this.prisma.customer.findUnique({
             where: { id: data.customerId },
         });

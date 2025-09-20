@@ -12,7 +12,6 @@ export class AuthService {
     ) { }
 
     async login(email: string, password: string) {
-        // Find user
         const user = await this.prisma.user.findUnique({
             where: { email },
         });
@@ -21,27 +20,23 @@ export class AuthService {
             throw new Error('User not found');
         }
 
-        // Check password
         const isValid = await bcrypt.compare(password, user.password);
         if (!isValid) {
             throw new Error('Invalid password');
         }
 
-        // Generate JWT
         const token = jwt.sign(
             { userId: user.id, email: user.email },
             process.env.JWT_SECRET || 'secret',
             { expiresIn: '7d' }
         );
 
-        // Cache user session
         await this.redis.set(`user:${user.id}`, { id: user.id, email: user.email }, 86400);
 
         return { token, user: { id: user.id, email: user.email, name: user.name } };
     }
 
     async register(email: string, password: string, name: string) {
-        // Check if user exists
         const existing = await this.prisma.user.findUnique({
             where: { email },
         });
@@ -50,10 +45,8 @@ export class AuthService {
             throw new Error('User already exists');
         }
 
-        // Hash password
         const hashedPassword = await bcrypt.hash(password, 10);
 
-        // Create user
         const user = await this.prisma.user.create({
             data: {
                 email,

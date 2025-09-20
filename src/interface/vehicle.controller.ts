@@ -3,7 +3,7 @@ import { VehicleService } from '../application/vehicle/vehicle.service';
 import { CreateVehicleDto, UpdateVehicleDto } from '../application/vehicle/vehicle.dto';
 import { JwtAuthGuard } from '../application/auth/jwt-auth.guard';
 
-@UseGuards(JwtAuthGuard) // Protect all vehicle routes
+@UseGuards(JwtAuthGuard)
 @Controller('vehicles')
 export class VehicleController {
     constructor(private vehicleService: VehicleService) { }

@@ -1,4 +1,3 @@
-// Location tracking entity
 export class Location {
     id: string;
     vehicleId: string;

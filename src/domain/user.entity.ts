@@ -1,4 +1,3 @@
-// User entity - basic structure
 export class User {
     id: string;
     email: string;

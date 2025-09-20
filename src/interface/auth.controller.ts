@@ -33,7 +33,6 @@ export class AuthController {
     @UseGuards(JwtAuthGuard)
     @Get('me')
     async getMe(@Request() req) {
-        // req.user berisi payload JWT (userId, email)
         return { 
             success: true, 
             user: req.user,
