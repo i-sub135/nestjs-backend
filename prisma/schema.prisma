@@ -1,0 +1,80 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id        String   @id @default(cuid())
+  email     String   @unique
+  password  String
+  name      String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("users")
+}
+
+model Customer {
+  id        String   @id @default(cuid())
+  name      String
+  email     String   @unique
+  phone     String?
+  address   String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  vehicles Vehicle[]
+
+  @@map("customers")
+}
+
+model Vehicle {
+  id           String   @id @default(cuid())
+  licensePlate String   @unique
+  model        String
+  brand        String
+  year         Int
+  customerId   String
+  isActive     Boolean  @default(true)
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  customer         Customer          @relation(fields: [customerId], references: [id])
+  locations        Location[]
+  trackingSessions TrackingSession[]
+
+  @@map("vehicles")
+}
+
+model Location {
+  id        String   @id @default(cuid())
+  vehicleId String
+  latitude  Float
+  longitude Float
+  speed     Float    @default(0)
+  timestamp DateTime @default(now())
+  sessionId String?
+
+  vehicle Vehicle          @relation(fields: [vehicleId], references: [id])
+  session TrackingSession? @relation(fields: [sessionId], references: [id])
+
+  @@map("locations")
+}
+
+model TrackingSession {
+  id            String    @id @default(cuid())
+  vehicleId     String
+  startTime     DateTime  @default(now())
+  endTime       DateTime?
+  isActive      Boolean   @default(true)
+  totalDistance Float?
+
+  vehicle   Vehicle    @relation(fields: [vehicleId], references: [id])
+  locations Location[]
+
+  @@map("tracking_sessions")
+}
