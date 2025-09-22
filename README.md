@@ -49,6 +49,15 @@ PATCH /vehicles/:id   # Update
 DELETE /vehicles/:id  # Delete
 ```
 
+
+### Tracking (Protected)
+```bash
+GET /tracking/vehicles/:id/locations    # Location history
+POST /tracking/vehicles/:id/start       # Start tracking
+POST /tracking/vehicles/:id/stop        # Stop tracking
+GET /tracking/active-vehicles           # Active vehicles
+```
+
 ## Architecture
 
 ### DDD + Hexagonal Structure
