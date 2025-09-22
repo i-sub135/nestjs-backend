@@ -1,7 +1,7 @@
 import { Controller, Get, Post, Body, Patch, Param, Delete, UseGuards } from '@nestjs/common';
 import { VehicleService } from '../application/vehicle/vehicle.service';
 import { CreateVehicleDto, UpdateVehicleDto } from '../application/vehicle/vehicle.dto';
-import { JwtAuthGuard } from '../application/auth/jwt-auth.guard';
+import { JwtAuthGuard } from '../common/jwt-auth.guard';
 
 @UseGuards(JwtAuthGuard)
 @Controller('vehicles')

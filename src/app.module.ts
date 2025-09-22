@@ -11,7 +11,7 @@ import { AuthService } from './application/auth/auth.service';
 import { CustomerService } from './application/customer/customer.service';
 import { VehicleService } from './application/vehicle/vehicle.service';
 import { TrackingService } from './application/tracking/tracking.service';
-import { JwtAuthGuard } from './application/auth/jwt-auth.guard';
+import { JwtAuthGuard } from './common/jwt-auth.guard';
 
 @Module({
   imports: [

@@ -1,6 +1,6 @@
 import { Controller, Get, Post, Param, UseGuards } from '@nestjs/common';
 import { TrackingService } from '../application/tracking/tracking.service';
-import { JwtAuthGuard } from '../application/auth/jwt-auth.guard';
+import { JwtAuthGuard } from '../common/jwt-auth.guard';
 
 @Controller('tracking')
 @UseGuards(JwtAuthGuard)
