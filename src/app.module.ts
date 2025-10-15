@@ -6,11 +6,13 @@ import { AuthController } from './interface/auth.controller';
 import { CustomerController } from './interface/customer.controller';
 import { VehicleController } from './interface/vehicle.controller';
 import { TrackingController } from './interface/tracking.controller';
+import { HealthController } from './interface/health.controller';
 import { TrackingGateway } from './interface/tracking.gateway';
 import { AuthService } from './application/auth/auth.service';
 import { CustomerService } from './application/customer/customer.service';
 import { VehicleService } from './application/vehicle/vehicle.service';
 import { TrackingService } from './application/tracking/tracking.service';
+import { HealthService } from './application/health/health.service';
 import { JwtAuthGuard } from './common/jwt-auth.guard';
 
 @Module({
@@ -22,7 +24,7 @@ import { JwtAuthGuard } from './common/jwt-auth.guard';
     PrismaModule, 
     RedisModule
   ],
-  controllers: [AuthController, CustomerController, VehicleController, TrackingController],
-  providers: [AuthService, CustomerService, VehicleService, TrackingService, TrackingGateway, JwtAuthGuard],
+  controllers: [AuthController, CustomerController, VehicleController, TrackingController, HealthController],
+  providers: [AuthService, CustomerService, VehicleService, TrackingService, HealthService, TrackingGateway, JwtAuthGuard],
 })
 export class AppModule { }
