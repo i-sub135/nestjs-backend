@@ -24,6 +24,13 @@ Server: `http://localhost:3000`
 
 ## API Endpoints
 
+### Health Check
+```bash
+GET /health        # Overall health status (database, redis, uptime)
+GET /health/ready  # Readiness probe (for K8s)
+GET /health/live   # Liveness probe (for K8s)
+```
+
 ### Auth
 ```bash
 POST /auth/register   # Register user
